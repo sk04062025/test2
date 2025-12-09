@@ -1,0 +1,11 @@
+app:
+  baseUrl: https://your-backstage-domain.com # No port 7007, uses standard 443 via Nginx
+
+backend:
+  baseUrl: https://your-backstage-domain.com
+  listen:
+    port: 7007 # Backstage still listens on 7007 internally
+    host: 0.0.0.0
+  csp:
+    # Important for Keycloak redirects
+    frame-ancestors: ['http://localhost:7007', 'https://your-backstage-domain.com']
