@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: backstage-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Mount the configuration file
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      # Mount the certificates folder
+      - ./certs:/etc/nginx/certs
+    extra_hosts:
+      # This mapping allows the container to find localhost of the VM
+      - "host.docker.internal:host-gateway"
